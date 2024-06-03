@@ -9,5 +9,8 @@
 </script>
 
 <style>
-
+.titlebar {
+  width: 100%;
+  height: 30px;
+}
 </style>
