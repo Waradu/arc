@@ -52,7 +52,8 @@ const props = defineProps({
 
   .name {
     line-height: 1;
-    margin-top: 2px;
+    font-size: 14px;
+    margin-top: 1px;
     width: 100%;
   }
 

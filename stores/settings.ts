@@ -46,7 +46,7 @@ export const useSettingsStore = defineStore("settingsStore", {
         },
         {
           name: "Dev",
-          color: "#FF5733",
+          color: "#5c1300",
           icon: "",
           currentTab: 2,
           favorites: [
@@ -66,9 +66,9 @@ export const useSettingsStore = defineStore("settingsStore", {
           pinned: [
             {
               id: 2,
-              name: "Stack Overflow",
-              icon: "https://stackoverflow.com",
-              url: "https://stackoverflow.com",
+              name: "PandaDEV",
+              icon: "https://pandadev.net",
+              url: "https://pandadev.net",
             },
             {
               id: 3,
@@ -81,14 +81,14 @@ export const useSettingsStore = defineStore("settingsStore", {
             {
               id: 4,
               name: "Nuxt",
-              icon: "https://nuxtjs.org",
-              url: "https://nuxtjs.org",
+              icon: "https://nuxt.com",
+              url: "https://nuxt.com",
             },
           ],
         },
         {
           name: "Social",
-          color: "#4287f5",
+          color: "#310031",
           icon: "",
           currentTab: 1,
           favorites: [
@@ -100,9 +100,9 @@ export const useSettingsStore = defineStore("settingsStore", {
             },
             {
               id: 1,
-              name: "Instagram",
-              icon: "https://instagram.com",
-              url: "https://instagram.com",
+              name: "Wireway",
+              icon: "https://wireway.ch",
+              url: "https://wireway.ch",
             },
           ],
           pinned: [
@@ -151,6 +151,7 @@ export const useSettingsStore = defineStore("settingsStore", {
         ...currentSpace.pinned,
         ...currentSpace.tabs,
       ];
+      console.log(id, allItems);
       return allItems.find((item) => item.id === id);
     },
     setActiveSpace(id: number) {
