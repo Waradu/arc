@@ -151,11 +151,44 @@ export const useSettingsStore = defineStore("settingsStore", {
         ...currentSpace.pinned,
         ...currentSpace.tabs,
       ];
-      console.log(id, allItems);
       return allItems.find((item) => item.id === id);
     },
     setActiveSpace(id: number) {
       this.currentSpace = id;
-    }
+    },
+    setActiveTab(id: number) {
+      const currentSpace = this.spaces[this.currentSpace];
+      currentSpace.currentTab = id;
+    },
+    removeTab(id: number) {
+      const currentSpace = this.spaces[this.currentSpace];
+      
+      const removeFromArray = (array: Tab[]) => {
+        const index = array.findIndex((item) => item.id === id);
+        if (index !== -1) {
+          array.splice(index, 1);
+        }
+      };
+    
+      removeFromArray(currentSpace.favorites);
+      removeFromArray(currentSpace.pinned);
+      removeFromArray(currentSpace.tabs);
+
+      const allItems = [
+        ...currentSpace.favorites,
+        ...currentSpace.pinned,
+        ...currentSpace.tabs,
+      ];
+    
+      if (currentSpace.currentTab === id) {
+        currentSpace.currentTab = 0
+      }
+    },    
+    addTab(name: string, url: string) {
+      const currentSpace = this.spaces[this.currentSpace];
+      const id = currentSpace.tabs.length + currentSpace.favorites.length + currentSpace.pinned.length;
+      const newTab = { id, name: name, icon: "", url: url };
+      currentSpace.tabs.push(newTab);
+    },
   },
 });

@@ -2,21 +2,26 @@
   <div class="tab" :class="{ active: active }">
     <div class="icon">
       <img
-        :src="'https://www.google.com/s2/favicons?sz=128&domain=' + icon"
-        v-if="icon != ''"
+        :src="'https://www.google.com/s2/favicons?sz=128&domain=' + url"
+        v-if="url != ''"
       />
     </div>
     <div class="name">{{ name }}</div>
-    <div class="close">X</div>
+    <div class="close" @click.stop="store.removeTab(id)">X</div>
   </div>
 </template>
 
 <script lang="ts" setup>
 const props = defineProps({
+  id: {
+    type: Number,
+    required: true
+  },
   name: String,
-  icon: String,
+  url: String,
   active: Boolean,
 });
+const store = useSettingsStore();
 </script>
 
 <style lang="scss">
@@ -69,6 +74,7 @@ const props = defineProps({
     padding-top: 2px;
     border-radius: 2px;
     transition: 0.2s;
+    cursor: pointer;
 
     &:hover {
       background-color: #00000080;

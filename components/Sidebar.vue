@@ -7,7 +7,11 @@
     >
       <div class="favorites">
         <template v-for="tab in space.favorites">
-          <div class="fav-tab" :class="{ active: tab.id == space.currentTab }">
+          <div
+            class="fav-tab"
+            :class="{ active: tab.id == space.currentTab }"
+            @click="store.setActiveTab(tab.id)"
+          >
             <div class="icon">
               <img
                 :src="
@@ -26,20 +30,24 @@
       <div class="pinned">
         <template v-for="tab in space.pinned">
           <Tab
+            :id="tab.id"
             :name="tab.name"
-            :icon="tab.icon"
+            :url="tab.url"
             :active="tab.id == space.currentTab"
+            @click="store.setActiveTab(tab.id)"
           />
         </template>
       </div>
       <hr />
       <div class="tabs">
-        <button class="newtab">+ New Tab</button>
+        <button class="newtab" @click="store.addTab('Waradu', 'https://waradu.dev/')">+ New Tab</button>
         <template v-for="tab in space.tabs">
           <Tab
+            :id="tab.id"
             :name="tab.name"
-            :icon="tab.icon"
+            :url="tab.url"
             :active="tab.id == space.currentTab"
+            @click="store.setActiveTab(tab.id)"
           />
         </template>
       </div>
@@ -85,6 +93,7 @@ onMounted(() => {
   gap: 10px;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+  user-select: none;
 
   .space {
     scroll-snap-align: start;
@@ -98,6 +107,7 @@ onMounted(() => {
       justify-content: space-between;
       font-size: 14px;
       padding: 5px;
+      margin-top: 5px;
       padding-inline: 0;
       font-weight: 100;
       color: #ffffff50;
@@ -105,6 +115,7 @@ onMounted(() => {
       .edit {
         opacity: 0;
         transition: 0.2s;
+        cursor: pointer;
       }
 
       &:hover {
