@@ -7,6 +7,7 @@
         <iframe :src="currentTabUrl" frameborder="0"></iframe>
       </div>
     </div>
+    <Bar />
   </div>
 </template>
 
